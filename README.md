@@ -1,4 +1,4 @@
-# Containers Theme
+# Containers Theme (for Quarto RevealJS)
 
 A Quarto Reveal.js extension that provides styled card-based presentations with rounded corners, tabsets, columns, and background color persistence.
 
