@@ -24,9 +24,7 @@ See [example.qmd](example.qmd) for source and [example.html](example.html) for r
 
 ## Styling
 
-### Default Lists
-
-### Default Style: Card Lists
+### Default List Style: Card Lists
 
 Lists are styled as rounded cards with colored backgrounds. The secondary color is calculated from the slide background using OKLCH color space.
 
