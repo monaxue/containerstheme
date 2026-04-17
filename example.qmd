@@ -148,6 +148,11 @@ revealjs-plugins:
 ## Secondary color
 - Secondary colors for containers in lists, panels, and columns, are automatically calculated and set from the background color
 
+# Header menu {data-stack-name="Header"}
+
+## Simple Menu
+- The header menu is a bundled extension called Simple Menu. You can find more information about it [here](https://github.com/Martinomagnifico/quarto-simplemenu).
+
 # Thanks! {data-stack-name="Thanks!"}
 
 ::: {.card-list-center .nonincremental}
