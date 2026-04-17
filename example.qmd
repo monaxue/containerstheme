@@ -1,0 +1,157 @@
+---
+title: Container Theme
+subtitle: Mona Xue
+format:
+  containerstheme-revealjs:
+    center: true
+    touch: true
+    incremental: true
+    self-contained: false
+    smaller: true
+    title-slide-attributes:
+        data-state: "hide-menubar"
+        data-background-color: "rgba(237, 251, 255, 1)"
+    transition: slide
+    section-divs: false
+    menu: false
+    simplemenu:
+      flat: true
+      barhtml:
+        header: "<div class='menubar'><ul class='menu'></ul></div>"
+      scale: 0.70
+revealjs-plugins:
+    - tabset
+    - simplemenu
+---
+
+# Lists {data-stack-name="Lists"}
+
+## Unordered Lists
+
+- Here is an example of
+    - unordered
+    - lists
+- sub items can be
+    1. ordered or
+    1. unordered
+
+## Ordered Lists
+
+1. Here is an example of
+    1. ordered
+    1. lists
+2. sub items can be
+    - ordered or
+    - unordered
+
+## Subitems
+
+- For both
+    - order and
+        - unordered lists
+1. there are
+    1. three levels 
+        1. of sub items
+
+## Centered lists
+
+::: card-list-center
+
+- These are centered lists
+    - Wrap lists with 
+    - `::: {.card-list-center}`
+
+:::
+
+## Normal lists
+
+::: normal-list
+
+- Wrap your lists with `normal-list` if you want the default list view
+- This is a bullet list
+
+1. This is a numbered list
+1. Item 2
+
+- [ ] Task 1
+- [ ] Task 2
+
+:::
+
+# Panels tabset {data-stack-name="Panels" background-color="rgba(254, 248, 237, 1)"}
+
+## Panel tabset
+
+:::::: {.panel-tabset}
+
+## Style
+
+- These are stylized panel tabsets
+- Defined by wrapping with `::: {.panel-tabset}`
+- Usel level-2 heading (## Tab Name) to define each tab
+
+## Automatic advance
+
+1. Tabs are automatically advanced
+1. This feature comes from a bundled plugin
+    - [RevealJS Tabset plugin](https://github.com/mcanouil/quarto-revealjs-tabset)
+
+::::::
+
+# Columns {data-stack-name="Columns" background-color="oklch(0.9375 0.0186 319.17)"}
+
+## Columns
+
+
+:::::: columns
+
+::::: {.column width = "33%" .nonincremental}
+
+- These are stylized columns with boxes around each column
+- You can set the box in the column to be nonincremental using
+    - `::: {.column .nonincremental}`
+
+:::::
+
+::::: {.column width = "33%" .nonincremental}
+
+- By setting as nonincremental
+    1. The boxes can be seen first, before any of the interior the items
+    1. Otherwise, the boxes advance like a normal fragment
+
+:::::
+
+::::: {.column width = "33%"}
+
+- [ ] These
+    - [ ] are
+- [ ] task lists
+
+:::::
+
+::::::
+
+# Color {data-stack-name="Color" background-color="oklch(0.9533 0.0364 133.79)"}
+
+## Background color
+
+- Set title slide color in the yaml using
+    - 
+        ```yaml
+        title-slide-attributes:
+            data-background-color: "your-color-of-choice"
+        ```
+- A new background color is set using
+    - `## Section title {background-color="color-of-choice"}`
+    - Otherwise, it inherits the background color of the previous slide
+
+## Secondary color
+- Secondary colors for containers in lists, panels, and columns, are automatically calculated and set from the background color
+
+# Thanks! {data-stack-name="Thanks!"}
+
+::: {.card-list-center .nonincremental}
+- You can find more information about this theme at <https://github.com/monaxue/containerstheme>
+- For information about the header menu, see <https://github.com/Martinomagnifico/quarto-simplemenu>
+- For information about the incremental tabset, see <https://github.com/mcanouil/quarto-revealjs-tabset>
+:::
