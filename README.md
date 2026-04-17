@@ -1,151 +1,37 @@
 # Containers Theme
 
-A Quarto Reveal.js extension that provides styled card-based presentations with rounded corners, tabsets, and background color persistence.
+A Quarto Reveal.js extension that provides styled card-based presentations with rounded corners, tabsets, columns, and background color persistence.
 
-## Example Slides
+## Example
 
-```markdown
----
-title: Container Theme
-subtitle: Mona Xue
-format:
-  containerstheme-revealjs:
-    center: true
-    touch: true
-    incremental: true
-    smaller: true
-    chalkboard:
-      theme: whiteboard
-    preview-links: true
-    title-slide-attributes:
-        data-state: "hide-menubar"
-        data-background-color: "rgba(237, 251, 255, 1)"
-    transition: slide
-    section-divs: false
-    menu: false
-    simplemenu:
-      flat: true
-      barhtml:
-        header: "<div class='menubar'><ul class='menu'></ul></div>"
-      scale: 0.70
-revealjs-plugins:
-    - tabset
-    - simplemenu
----
+![Lists](screenshots/lists.png)
 
-# Some Lists {data-stack-name="Some Lists"}
+![Panels](screenshots/panels.png)
 
-## Incremental lists
+![Columns](screenshots/columns.png)
 
-- These
-    - are 
-        1. some
-        1. incremental
-- lists
+See [example.qmd](example.qmd) for source and [example.html](example.html) for rendered presentation.
 
-## Nonincremntal lists {background-color="rgba(255, 237, 228, 1)"}
+## Features
 
-::: {.nonincremental}
-
-1. These lists
-    1. are
-    1. nonincremental
-1. A new background color is set using
-    - {background-color="color-of-choice"}
-    - Otherwise, it inherits the background color of the previous slide
-
-:::
-
-# Panels and Columns {data-stack-name="Panels and Columns" background-color="rgba(255, 251, 228, 1)"}
-
-## Panel tabset 
-
-:::::: {.panel-tabset}
-
-## Tab 1
-
-- This is tab 1
-- With a normal list
-
-## Tab 2
-
-1. This is tab 2
-1. With a numbered list
-
-::::::
-
-## Centered slide {.center}
-
-::: card-list-center
-
-- Some centered cards!
-    - Inner cards!
-- Next line!
-
-:::
-
-## Columns {background-color="rgba(254, 248, 237, 1)"}
-
-
-:::::: columns
-
-::::: {.column width = "33%" .nonincremental}
-
-- Item 1
-    - Item 2
-- Item 3
-    - Item 4
-
-:::::
-
-::::: {.column width = "33%"}
-
-1. Item 1
-    1. Item 2
-
-:::::
-
-::::: {.column width = "33%"}
-
-
-- [ ] Item 1
-    - [ ] Item 2
-- [ ] Item 3
-
-:::::
-
-::::::
-
-# Thanks! {data-stack-name="Thanks!"}
-
-::: {.card-list-center .nonincremental}
-- You can find more information about this theme at <https://github.com/monaxue/>
-- For information about the header menu, see <https://github.com/Martinomagnifico/quarto-simplemenu>
-- For information about the incremental tabset, see <https://github.com/mcanouil/quarto-revealjs-tabset>
-:::
-```
-
-See [example.qmd](example.qmd) for the source.
+- Card-styled lists with rounded corners and colored backgrounds
+- Centered card lists for focus slides
+- Normal (browser-default) lists for standard content
+- Styled panel tabsets with rounded tab buttons
+- Equal-height columns with card-style wrappers
+- Background color persistence across slides
+- Secondary colors automatically calculated from background
 
 ## Styling
 
 ### Card Lists
 
-Lists (both bullet and numbered) are styled as rounded cards with colored backgrounds. The primary card color is calculated from the slide's background color using OKLCH color space - it slightly decreases lightness and increases chroma to create subtle contrast:
+Lists are styled as rounded cards with colored backgrounds. The secondary color is calculated from the slide background using OKLCH color space.
 
-```scss
---li-bg-1: oklch(from var(--bg) calc(l - 0.07) calc(c + 0.04) h);
---li-bg-2: var(--bg);
-```
-
-- **First-level items**: Use `--li-bg-1` (slightly darker/saturated)
-- **Nested items**: Use `--li-bg-2` (same as slide background)
-
-Use the `.normal-list` class to reset to browser-default list styling.
+- First-level items: Slightly darker/saturated
+- Nested items: Same as slide background
 
 ### Centered Card Lists
-
-Use `.card-list-center` for centered card lists:
 
 ```markdown
 ::: card-list-center
@@ -154,34 +40,42 @@ Use `.card-list-center` for centered card lists:
 :::
 ```
 
-### Panel Tabsets
+### Normal Lists
 
-Panel tabsets (`.panel-tabset`) are styled with rounded tab buttons and a colored border:
+```markdown
+::: normal-list
+- Bullet list
+1. Numbered list
+- [ ] Task list
+:::
+```
+
+### Panel Tabsets
 
 ```markdown
 :::::: {.panel-tabset}
 
 ## Tab 1
 
-Content for tab 1
+Content
 
 ## Tab 2
 
-Content for tab 2
+Content
 
 ::::::
 ```
 
 ### Columns
 
-Columns get automatic equal-height styling with `.column-card` wrappers. Use `.nonincremental` on a column to show it immediately without fragment animation:
+Columns automatically get equal-height card styling. Use `.nonincremental` to show immediately:
 
 ```markdown
 :::::: columns
 
-::::: {.column width="33%"}
+::::: {.column width="33%" .nonincremental}
 
-Content here
+Content
 
 :::::
 
@@ -190,48 +84,33 @@ Content here
 
 ## Background Color Persistence
 
-Background colors set on any slide **persist forward** to all subsequent slides until a new background color is set.
+Background colors set on any slide **persist forward** to all subsequent slides until a new background is set:
 
 ```markdown
-# Section Title {background-color="peach"}
-
+# Section {background-color="peach"}
 ## This slide is peach
-
-## This slide is also peach (inherits)
-
-## Different slide {background-color="cream"}
-
+## Still peach (inherits)
+## New section {background-color="cream"}
 ## This slide is cream
 ```
 
-If no background color is set, white (#ffffff) is used as the default.
+Default is white if no background color is set for the title slide or any given slide. 
 
-The extension includes a small JavaScript that propagates the background color and sets a CSS custom property (`--bg`) that the SCSS uses for calculating card list colors.
+## Extensions
 
-## Other Extensions
+This theme works with bundled Quarto extensions:
 
-This theme works with these additional Quarto extensions:
-
-- **simplemenu** - Flat navigation menu bar
-- **tabset** - Incremental panel tabsets
+- [simplemenu](https://github.com/Martinomagnifico/quarto-simplemenu) - Header menu navigation
+- [tabset](https://github.com/mcanouil/quarto-revealjs-tabset) - Panel tabsets
 
 ## Installation
 
-To use this extension, add it to your Quarto project:
-
-```yaml
-format:
-  revealjs:
-    theme: containers.scss
-    include-after-body: bg.html
-```
-
-Or reference it directly in your format options:
+Use the format directly in your Quarto document. Replace where you would normally put `revealjs`:
 
 ```yaml
 format:
   containerstheme-revealjs:
-    # options here
+    # options
 ```
 
 ## Configuration
@@ -248,12 +127,10 @@ format:
     transition: slide
     section-divs: false
     menu: false
-    chalkboard:
-      theme: whiteboard
 ```
 
 ## Credits
 
 - Author: Mona Xue
-- Simplemenu: [Martinomagnifico](https://github.com/Martinomagnifico/quarto-simplemenu)
-- Tabset: [mcanouil](https://github.com/mcanouil/quarto-revealjs-tabset)
+- [simplemenu](https://github.com/Martinomagnifico/quarto-simplemenu)
+- [tabset](https://github.com/mcanouil/quarto-revealjs-tabset)

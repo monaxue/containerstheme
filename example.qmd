@@ -88,7 +88,7 @@ revealjs-plugins:
 
 - These are stylized panel tabsets
 - Defined by wrapping with `::: {.panel-tabset}`
-- Usel level-2 heading (## Tab Name) to define each tab
+- Usel level-2 heading (`## Tab Name`) to define each tab
 
 ## Automatic advance
 
